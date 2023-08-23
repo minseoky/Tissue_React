@@ -20,7 +20,7 @@ function Cloud({ wordCloudData,onWordClick,width,height }) {
                             : ThemeColors.cloudTextColor3
                 }
                 rotate={() => 0}
-                padding={55}
+                padding={35}
                 random={() => 0.5}
                 onWordClick={onWordClick}
             />

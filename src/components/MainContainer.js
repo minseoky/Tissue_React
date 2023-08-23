@@ -46,10 +46,10 @@ const StyledSlider = styled(Slider)`
     margin: 0 10px 0 10px;
 `
 
-function MainContainer() {
+function MainContainer({isPeriodDefault, endDateDefault, startDateDefault}) {
     const [tCloudActive, setTCloudActive] = useState("true");
     const [tChartActive, setTChartActive] = useState("false");
-    const [periodToggle, setPeriodToggle] = useState("false");
+    const [periodToggle, setPeriodToggle] = useState(isPeriodDefault ? isPeriodDefault : "false");
     const [keywordQuantity, setKeywordQuantity] = useState(10);
 
     const handleTCloudClick = () => {
@@ -114,7 +114,13 @@ function MainContainer() {
                     </ToggleContainer>
                 </ToggleContainerOuter>
             </LabelContainer>
-            <MainBox active={tCloudActive === "true" ? "cloud" : "chart"} isPeriod={periodToggle} keywordQuantity={keywordQuantity}/>
+            <MainBox
+                active={tCloudActive === "true" ? "cloud" : "chart"}
+                isPeriod={periodToggle}
+                keywordQuantity={keywordQuantity}
+                endDateDefault={endDateDefault}
+                startDateDefault={startDateDefault}
+            />
         </div>
     );
 }

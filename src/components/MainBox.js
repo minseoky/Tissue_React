@@ -48,9 +48,9 @@ const CloudContainer = styled.div`
 `
 
 
-function MainBox({active, isPeriod, keywordQuantity}) {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDefault}) {
+    const [startDate, setStartDate] = useState(startDateDefault ? startDateDefault : new Date());
+    const [endDate, setEndDate] = useState(endDateDefault ? endDateDefault : new Date());
     const [wordCloudData, setWordCloudData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedKeyword, setSelectedKeyword] = useState(null);
@@ -128,7 +128,6 @@ function MainBox({active, isPeriod, keywordQuantity}) {
                   <DailySelector
                       startDate={startDate}
                       setStartDate={setStartDate}
-                      endDate={endDate}
                       setEndDate={setEndDate}
                   />
               )}

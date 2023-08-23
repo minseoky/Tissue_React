@@ -1,16 +1,27 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import ThemeColors from "../color_config/ThemeColors";
 import ArticleList from "./ArticleList";
+
+const fadeAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 const ArticleListContainerOuter = styled.div`
   margin-top: 2vh;
   height: 80vh;
 `
 const KeywordWrapper = styled.div`
-  padding-top: 40px;
   padding-right: 40px;
   padding-bottom: 40px;
   text-align: right;
+  animation: ${fadeAnimation} 0.5s ease-in-out both;
 `
 const Keyword = styled.div`
   @font-face {
@@ -36,7 +47,12 @@ const SelectedKeyword = styled.div`
   color: ${ThemeColors.textColor3}
 `
 
-function ArticleListContainer({selectedKeyword, startDate, endDate}) {
+const DateViewer = styled.div`
+  font-size: 15px;
+  color: ${ThemeColors.textColor1};
+  margin: 15px 0 -15px 0;
+`
+function ArticleListContainer({selectedKeyword, startDate, endDate, isPeriod}) {
     return(
       <ArticleListContainerOuter>
           <KeywordWrapper>
@@ -46,6 +62,9 @@ function ArticleListContainer({selectedKeyword, startDate, endDate}) {
               <SelectedKeyword>
                   {selectedKeyword}
               </SelectedKeyword>
+              <DateViewer>
+                  {isPeriod === "true" ? `${startDate.toISOString().slice(0,10)} ~ ${endDate.toISOString().slice(0,10)}` : `${startDate.toISOString().slice(0,10)}`} 의 키워드
+              </DateViewer>
           </KeywordWrapper>
           <ArticleList
               startDate={startDate}

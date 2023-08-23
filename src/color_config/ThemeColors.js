@@ -4,6 +4,7 @@ const ThemeColors = {
     textColor1: "#8b8b8b",
     textColor2: "#000000",
     textColor3: "#369682",
+    textColor4: "#FEFEFE",
     labelColorActive: "#69C2AE",
     labelColorDeactivated: "#F3F1F1",
     datePickerColorActive: "#69C2AE",
@@ -15,7 +16,17 @@ const ThemeColors = {
     cloudTextColor3: "#154d42",
     slideBackgroundColor: "#b7b7b7",
     slideActiveColor: "#69C2AE",
-    tapBackgroundColor: "#F3F3F1",
+    tapBackgroundColor: "rgba(244,244,244,0.5)",
+    chartColor1: "#69C2AE",
+    chartColor2: "#E5858D",
+    chartColor3: "#8DAE69",
+    chartColor4: "#6F69C2",
+    chartColor5: "#ccb081",
+    chartColor6: "#ca9de1",
+    contentContainerColor: "#d3d3d3",
+    backButtonColor1: "transparent",
+    backButtonColor2: "#cecece",
+    modalColor: "#f3f3f3",
 
 };
 

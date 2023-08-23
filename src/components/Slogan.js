@@ -4,7 +4,6 @@ import ThemeColors from "../color_config/ThemeColors";
 const SloganContainer = styled.div`
   text-align: center;
   color: ${ThemeColors.textColor2};
-  padding-top: 10px;
   padding-bottom: 10px;
 `
 

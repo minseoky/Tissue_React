@@ -1,5 +1,4 @@
 import DatePicker from 'react-datepicker';
-import {useState} from "react";
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
 import styled from "styled-components";
@@ -18,6 +17,8 @@ const DatePickerContainer = styled.div`
     margin-right: 3%;
     font-size: 24px;
   }
+
+  
 `
 const IconContainer = styled.div`
   margin-right: 10px; /* 아이콘과 날짜 선택기 사이의 간격 설정 */
@@ -40,8 +41,10 @@ const StyledDatePicker = styled(DatePicker)`
     &:focus {
       border: 2px solid ${ThemeColors.datePickerColorActive};
     }
+  
+  
 `
-function DailySelector({startDate, setStartDate, endDate, setEndDate}){
+function DailySelector({startDate, setStartDate, setEndDate}){
     return (
         <DatePickerContainer>
             <IconContainer>

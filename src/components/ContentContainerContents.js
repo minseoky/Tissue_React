@@ -12,6 +12,10 @@ const Outer = styled.div`
     font-style: normal;
   }
   font-family: 'SBAggroB';
+
+  & text:hover {
+    cursor: pointer;
+  }
 `
 
 const DateContainer = styled.div`
@@ -19,14 +23,20 @@ const DateContainer = styled.div`
   font-size: 18px;
   
 `
-function ContentContainerContents({wordCloudData, startDate, endDate, isPeriod}) {
-
+function ContentContainerContents({wordCloudData, startDate, endDate, isPeriod, setSelectedKeyword}) {
     return(
       <Outer>
           <DateContainer>
             {isPeriod === "true" ? `${startDate.toISOString().slice(0,10)} ~ ${endDate.toISOString().slice(0,10)}` : `${startDate.toISOString().slice(0,10)}`} 의 키워드
           </DateContainer>
-          <Cloud wordCloudData={wordCloudData} width={3600} height={2000}/>
+          <Cloud
+              wordCloudData={wordCloudData}
+              width={3600}
+              height={2000}
+              onWordClick={(event, d) => {
+                  setSelectedKeyword(d.text);
+              }}
+          />
       </Outer>
     );
 }
