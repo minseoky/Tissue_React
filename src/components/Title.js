@@ -3,6 +3,7 @@ import tissue_img from "../imgs/Tissue.png"
 
 
 
+
 const TitleContainer = styled.div`
   font-size: 54px;
   display: flex;
@@ -25,6 +26,8 @@ const StyledImg = styled.img`
 `
 
 function Title(){
+
+
     return(
         <TitleContainer>
             <StyledImg src={tissue_img}/>
