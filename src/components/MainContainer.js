@@ -36,11 +36,19 @@ const ToggleContainerOuter = styled.div`
   align-items: center;
   margin-left: auto;
   margin-right: 5%;
+  @media (max-width: 1024px) {
+    font-size: 0px;
+  }
 `
 
 const KeywordQuantity = styled.div`
   align-items: center;
   margin-left: auto;
+  @media (max-width: 1024px) {
+    font-size: 14px;
+    position: absolute;
+    margin-bottom: 50px;
+  }
 `
 const StyledSlider = styled(Slider)`
     margin: 0 10px 0 10px;

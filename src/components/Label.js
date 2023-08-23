@@ -9,6 +9,7 @@ const LabelContainer = styled.button`
     font-style: normal;
   }
   font-family: 'KorailRoundGothicBold';
+  color: black;
   border: 0;
   background-color: ${props => props.backcolor};
   display: flex;
@@ -24,9 +25,15 @@ const LabelContainer = styled.button`
   margin-bottom: -4px;
   transition: transform 0.2s ease; /* 변환에 애니메이션 적용 */
   z-index: 2;
-
   &:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 14px;
+    height:  ${props => props.pixel + 28}px;
+    margin-top: ${props => 8 - props.pixel}px;
+    padding-top: 10px;
   }
 `;
 

@@ -17,7 +17,8 @@ const TitleContainer = styled.div`
     font-weight: normal;
     font-style: normal;
   }
-  font-family: "BM Dohyeon";
+  font-family: "BMDOHYEON";
+  
 `
 
 const StyledImg = styled.img`

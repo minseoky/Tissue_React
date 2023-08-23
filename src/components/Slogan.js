@@ -7,6 +7,9 @@ const SloganContainer = styled.div`
   color: ${ThemeColors.textColor2};
   padding-bottom: 10px;
   white-space: nowrap; /* Prevent line breaks */
+  @media (max-width: 1024px) {
+    margin-bottom: 30px;
+  }
 `
 
 function Slogan() {
