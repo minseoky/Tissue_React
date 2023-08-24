@@ -70,9 +70,10 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
             }
 
             const fetchDataForDate = async (date) => {
-                const apiUrl = `api/hot_keywords?date=${date.toISOString().slice(0,10)}&topN=${keywordQuantity}`;
+                const apiUrl = `/api/hot_keywords?date=${date.toISOString().slice(0,10)}&topN=${keywordQuantity}`;
                 try {
                     const response = await fetch(apiUrl);
+                    console.log(response);
                     const jsonData = await response.json();
                     return jsonData.map(item => ({ text: item.keyword, value: item.value * 15000 }));
                 } catch (error) {

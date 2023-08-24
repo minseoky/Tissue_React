@@ -27,7 +27,22 @@ const fadeAnimation = keyframes`
 
 const OverflowContainer = styled.div`
   display: flex;
-  overflow-x: auto;
+  overflow: scroll;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    /* 세로 스크롤 넓이 */
+    width: 8px;
+
+    /* 가로 스크롤 높이 */
+    height: 8px;
+
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
   padding: 25px 20px 30px 20px
 `;
 
@@ -95,8 +110,8 @@ const StyledModal = styled(Modal).attrs({
     appElement: document.getElementById('root') // Set the app element here
 })`
   background-color: ${ThemeColors.modalColor};
-  height: 50vh;
-  width: 40vw;
+  height: 62vh;
+  width: 60vw;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -123,9 +138,10 @@ const ModalTitle = styled.div`
 
 `
 const ImgContainer = styled.img`
-  margin-left: 15%;
-  width: 70%;
+  margin-left: 24%;
+  width: 52%;
   height: 240px;
+  margin-bottom: 10px;
 `
 const ImgAndTitle = styled.div`
   width: 100%;

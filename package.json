@@ -53,5 +53,6 @@
   },
   "devDependencies": {
     "@types/react-datepicker": "^4.15.0"
-  }
+  },
+  "proxy": "http://t-issue.site"
 }
