@@ -29,11 +29,11 @@ const TabButton = styled.button`
 
 const ContentContainer = styled.div`
   position: absolute;
-  left: ${({ open }) => (open ? '0%' : '-25.2vw')};
+  left: ${({ open }) => (open ? '0%' : '-30.2vw')};
   width: 30vw;
   height: 50vh;
   margin-top: 10vh;
-  background-color: ${ThemeColors.tapBackgroundColor};
+  background-color: ${ThemeColors.contentContainerBackgroundColor};
   border: ${ThemeColors.contentContainerColor} 1px solid;
   backdrop-filter: blur(9px);
   border-radius: 0 15px 15px 0;
@@ -45,6 +45,7 @@ const ContentContainer = styled.div`
           6px 0px 8px rgba(0, 0, 0, 0.1),
           -6px 0px 8px rgba(0, 0, 0, 0.1);
   @media (max-width: 1024px) {
+    left: ${({ open }) => (open ? '0%' : '-50.2vw')};
     width: 50vw;
     height: 60vh;
   }
