@@ -70,7 +70,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
             }
 
             const fetchDataForDate = async (date) => {
-                const apiUrl = `t-issue.site/api/hot_keywords?date=${date.toISOString().slice(0,10)}&topN=${keywordQuantity}`;
+                const apiUrl = `api/hot_keywords?date=${date.toISOString().slice(0,10)}&topN=${keywordQuantity}`;
                 try {
                     const response = await fetch(apiUrl);
                     const jsonData = await response.json();
