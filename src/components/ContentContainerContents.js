@@ -61,8 +61,8 @@ function ContentContainerContents({wordCloudData, startDate, endDate, isPeriod, 
           <CloudContainer>
               <Cloud
                   wordCloudData={wordCloudData}
-                  width={width}
-                  height={height}
+                  width={width > 1024 ? width*0.7 : width*1.2}
+                  height={height > 1024 ? height*0.7 : height}
                   onWordClick={(event, d) => {
                       setSelectedKeyword(d.text);
                   }}

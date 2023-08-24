@@ -47,7 +47,7 @@ const ContentContainer = styled.div`
   @media (max-width: 1024px) {
     left: ${({ open }) => (open ? '0%' : '-50.2vw')};
     width: 50vw;
-    height: 60vh;
+    height: 50vh;
   }
 `;
 
