@@ -13,9 +13,9 @@ function Cloud({ wordCloudData,onWordClick,width,height }) {
                 height={height}
                 font="Pretendard"
                 fill={(d) =>
-                    d.value > 100000
+                    d.value > 1900
                         ? ThemeColors.cloudTextColor1
-                        : d.value > 50000
+                        : d.value > 800
                             ? ThemeColors.cloudTextColor2
                             : ThemeColors.cloudTextColor3
                 }

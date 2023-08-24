@@ -8,7 +8,7 @@ import DailySelector from "../cloud_components/DailySelector";
 import { useNavigate } from 'react-router-dom';
 
 
-
+export const cloudSizeValue = 1500;
 
 const MainBoxContainerOuter = styled.div`
   display: flex;
@@ -41,9 +41,13 @@ const LoadingComponent = styled.div`
 
 const CloudContainer = styled.div`
   height: 80%;
-  margin-top: -20px;
+  margin-top: -30px;
+  
   & text:hover {
     cursor: pointer;
+  }
+  @media (max-width: 1024px) {
+    margin-top: -80px;
   }
 `
 
@@ -54,7 +58,26 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
     const [wordCloudData, setWordCloudData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedKeyword, setSelectedKeyword] = useState(null);
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Handler to update window size
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+            setHeight(window.innerHeight);
+        };
+
+        // Add event listener to listen for window resize
+        window.addEventListener("resize", handleResize);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     useEffect(() => {
         setIsLoading(true);
         if(isPeriod === "false"){
@@ -75,7 +98,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
                     const response = await fetch(apiUrl);
                     console.log(response);
                     const jsonData = await response.json();
-                    return jsonData.map(item => ({ text: item.keyword, value: item.value * 15000 }));
+                    return jsonData.map(item => ({ text: item.keyword, value: item.value * cloudSizeValue }));
                 } catch (error) {
                     console.error("Error fetching word cloud data for date:", date, error);
                     return [];
@@ -139,8 +162,8 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
                       ? <CloudContainer>
                           <Cloud
                               wordCloudData={wordCloudData}
-                              width={6000}
-                              height={2600}
+                              width={width}
+                              height={height}
                               onWordClick={(event, d) => {
                                   setSelectedKeyword(d.text);
                                   HandleOnClick(d.text, wordCloudData);

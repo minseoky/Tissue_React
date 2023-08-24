@@ -14,6 +14,8 @@ import {
 import ThemeColors from "../color_config/ThemeColors";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
+import {cloudSizeValue} from "./MainBox";
+
 
 
 const Outer = styled.div`
@@ -79,7 +81,7 @@ function ChartContainer({ startDate, endDate, wordCloudData, isPeriod, highlight
     // Prepare data for the chart
     const chartData = wordCloudData.map((data) => ({
         name: data.text,
-        value: data.value / 15000,
+        value: data.value / cloudSizeValue,
     }));
 
     const COLORS = [ThemeColors.chartColor1,

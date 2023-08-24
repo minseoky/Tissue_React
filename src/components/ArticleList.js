@@ -127,6 +127,7 @@ const StyledModal = styled(Modal).attrs({
             0px -6px 8px rgba(0, 0, 0, 0.1),
           6px 0px 8px rgba(0, 0, 0, 0.1),
           -6px 0px 8px rgba(0, 0, 0, 0.1);
+  
 `
 const ModalInner = styled.div`
   display: block;
