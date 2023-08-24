@@ -169,7 +169,7 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
             }
 
             const fetchDataForDate = async (date) => {
-                const apiUrl = `http://localhost:8080/api/full_summaries?date=${date.toISOString().slice(0, 10)}&topN=${summaryQuantity * 50}&keyword=${selectedKeyword}`;
+                const apiUrl = `t-issue.site/api/full_summaries?date=${date.toISOString().slice(0, 10)}&topN=${summaryQuantity * 50}&keyword=${selectedKeyword}`;
                 try {
                     const response = await fetch(apiUrl);
                     const jsonData = await response.json();

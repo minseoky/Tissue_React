@@ -54,7 +54,7 @@ function ChartContainer({ startDate, endDate, wordCloudData, isPeriod, highlight
             for (const date of dateArray) {
                 const keywordDataObject = {};
                 for (const keyword of highlightedKeywords) {
-                    const response = await fetch(`http://localhost:8080/api/num_of_keywords_per_day?date=${date}&keyword=${keyword}`);
+                    const response = await fetch(`t-issue.site/api/num_of_keywords_per_day?date=${date}&keyword=${keyword}`);
                     const dataArray = await response.json(); // JSON 데이터를 배열로 받아옴
 
                     // 이제 dataArray는 배열이므로, 첫 번째 요소의 value를 추출합니다
