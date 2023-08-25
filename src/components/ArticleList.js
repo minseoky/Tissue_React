@@ -80,30 +80,31 @@ const Box = styled.div`
 const Image = styled.img`
   border-radius: 10px;
     max-width: 100%;
-  height: 170px;
+  height: 120px;
   object-fit: fill;
 `;
 
 const ImageWrapper = styled.div`
   text-align: center;
   margin-bottom: 3px;
-  height: 170px;
+  height: 120px;
 `
 
 const DateAndPress = styled.div`
-  font-size: 13px;
-  padding-bottom: 7px;
+  font-size: 11px;
+  padding-bottom: 4px;
 `
 const ArticleTitle = styled.div`
-  font-size: 18px;
-  padding-bottom: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 2px;
 `
 const Summary = styled.div`
-  font-size: 15px;
+  font-size: 14px;
   line-height: 17px;
   display: -webkit-box; /* Required for multiple lines */
   -webkit-box-orient: vertical; /* Vertical layout */
-  -webkit-line-clamp: 5; /* Maximum number of lines to display */
+  -webkit-line-clamp: 8; /* Maximum number of lines to display */
   overflow: hidden; /* Hide overflowing content */
 `
 
