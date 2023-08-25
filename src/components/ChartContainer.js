@@ -102,6 +102,7 @@ function ChartContainer({ startDate, endDate, wordCloudData, isPeriod, highlight
         <div>
             {highlightedKeywords.length === 0 ? <Info>↑ 키워드를 선택하세요 ↑</Info> : <Outer>
                 <ResponsiveContainer>
+                    <div className={"step_6"}>
                     <PieChart>
                         <Pie
                             data={filteredChartData}
@@ -122,6 +123,7 @@ function ChartContainer({ startDate, endDate, wordCloudData, isPeriod, highlight
                         </Pie>
                         <Tooltip />
                     </PieChart>
+                    </div>
                 </ResponsiveContainer>
                 {isPeriod === "true" ?  <ResponsiveContainer>
                     <LineChart data={lineChartData}>

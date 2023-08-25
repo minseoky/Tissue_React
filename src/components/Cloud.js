@@ -7,6 +7,7 @@ function Cloud({ wordCloudData,onWordClick,width,height }) {
 
     return (
         <div>
+            <div className={"step_5"}>
             <WordCloud
                 data={wordCloudData}
                 width={width}
@@ -24,6 +25,7 @@ function Cloud({ wordCloudData,onWordClick,width,height }) {
                 random={() => 0.5}
                 onWordClick={onWordClick}
             />
+            </div>
         </div>
     );
 }

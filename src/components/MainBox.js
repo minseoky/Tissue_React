@@ -53,6 +53,7 @@ const CloudContainer = styled.div`
 `
 
 
+
 function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDefault}) {
     const [startDate, setStartDate] = useState(startDateDefault ? startDateDefault : new Date());
     const [endDate, setEndDate] = useState(endDateDefault ? endDateDefault : new Date());
@@ -62,6 +63,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
     const navigate = useNavigate();
+
 
     useEffect(() => {
         // Handler to update window size
@@ -140,21 +142,20 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
 
     return(
         <MainBoxContainerOuter>
-          <MainBoxContainer>
-
+            <MainBoxContainer>
               {isPeriod === "true" ? (
-                  <PeriodSelector
-                      startDate={startDate}
-                      setStartDate={setStartDate}
-                      endDate={endDate}
-                      setEndDate={setEndDate}
-                  />
+                      <PeriodSelector
+                          startDate={startDate}
+                          setStartDate={setStartDate}
+                          endDate={endDate}
+                          setEndDate={setEndDate}
+                      />
               ) : (
-                  <DailySelector
-                      startDate={startDate}
-                      setStartDate={setStartDate}
-                      setEndDate={setEndDate}
-                  />
+                      <DailySelector
+                          startDate={startDate}
+                          setStartDate={setStartDate}
+                          setEndDate={setEndDate}
+                      />
               )}
               {isLoading ? (
                 <LoadingComponent><LoadingImg/></LoadingComponent>

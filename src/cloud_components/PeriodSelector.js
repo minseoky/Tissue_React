@@ -65,29 +65,32 @@ function PeriodSelector({ startDate, setStartDate, endDate, setEndDate }) {
 
     return (
         <DatePickerContainer>
+            <div className={"step_4"} style={{display: "flex"}}>
             <IconContainer>
                 <FontAwesomeIcon icon={faCalendarAlt} />
             </IconContainer>
-            <StyledDatePicker
-                locale={ko}
-                selected={startDate}
-                closeOnScroll={true}
-                onChange={handleStartDateChange}
-                shouldCloseOnSelect={true}
-                dateFormat="yyyy-MM-dd"
-            />
-            <p>~</p>
-            <IconContainer>
-                <FontAwesomeIcon icon={faCalendarAlt} />
-            </IconContainer>
-            <StyledDatePicker
-                locale={ko}
-                selected={endDate}
-                closeOnScroll={true}
-                onChange={handleEndDateChange}
-                shouldCloseOnSelect={true}
-                dateFormat="yyyy-MM-dd"
-            />
+
+                <StyledDatePicker
+                    locale={ko}
+                    selected={startDate}
+                    closeOnScroll={true}
+                    onChange={handleStartDateChange}
+                    shouldCloseOnSelect={true}
+                    dateFormat="yyyy-MM-dd"
+                />
+                <p>~</p>
+                <IconContainer>
+                    <FontAwesomeIcon icon={faCalendarAlt} />
+                </IconContainer>
+                <StyledDatePicker
+                    locale={ko}
+                    selected={endDate}
+                    closeOnScroll={true}
+                    onChange={handleEndDateChange}
+                    shouldCloseOnSelect={true}
+                    dateFormat="yyyy-MM-dd"
+                />
+            </div>
         </DatePickerContainer>
     );
 }

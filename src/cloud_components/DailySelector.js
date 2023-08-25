@@ -54,19 +54,22 @@ function DailySelector({startDate, setStartDate, setEndDate}){
             <IconContainer>
                 <FontAwesomeIcon icon={faCalendarAlt} />
             </IconContainer>
-            <StyledDatePicker
-                locale={ko}
-                selected={startDate}
-                closeOnScroll={true}
-                onChange={
-                    (date) => (
-                        setStartDate(date),
-                        setEndDate(date)
-                    )
-                }
-                shouldCloseOnSelect={true}
-                dateFormat="yyyy-MM-dd"
-            />
+
+            <div className={"step_4"} style={{display: "flex"}}>
+                <StyledDatePicker
+                    locale={ko}
+                    selected={startDate}
+                    closeOnScroll={true}
+                    onChange={
+                        (date) => (
+                            setStartDate(date),
+                            setEndDate(date)
+                        )
+                    }
+                    shouldCloseOnSelect={true}
+                    dateFormat="yyyy-MM-dd"
+                />
+            </div>
         </DatePickerContainer>
     );
 }
