@@ -4,15 +4,13 @@ import Modal from 'react-modal';
 import ThemeColors from "../color_config/ThemeColors";
 import tissue_img from "../imgs/Tissue.png";
 import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
+import LoadingImg from "./LoadingImg";
 
 
 const LoadingComponent = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  height: 800px;
   font-size: 30px;
-  color: black; /* Set initial color */
+  margin-top: 200px;
 `
 
 const fadeAnimation = keyframes`
@@ -28,7 +26,6 @@ const fadeAnimation = keyframes`
 
 const OverflowContainer = styled.div`
   display: flex;
-  overflow: scroll;
   overflow: scroll;
   &::-webkit-scrollbar {
     /* 세로 스크롤 넓이 */
@@ -52,7 +49,7 @@ const Outer = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap; /* Prevent wrapping to multiple lines */
-  gap: 46px;
+  gap: 45px;
 
   animation: ${fadeAnimation} 0.5s ease-in-out forwards;
 `;
@@ -61,7 +58,7 @@ const Box = styled.div`
     border: 1px solid #ccc;
     padding: 10px;
     width: 200px;
-    height: 300px;
+    height: 320px;
     border-radius: 20px;
   background-color: white;
   border: none;
@@ -97,9 +94,11 @@ const DateAndPress = styled.div`
 const ArticleTitle = styled.div`
   font-size: 15px;
   font-weight: bold;
-  padding-bottom: 2px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
 `
 const Summary = styled.div`
+  padding-top: 5px;
   font-size: 14px;
   line-height: 17px;
   display: -webkit-box; /* Required for multiple lines */
@@ -308,7 +307,7 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
 
     return(
         <OverflowContainer>
-            {isLoading ? <LoadingComponent>Loading...</LoadingComponent> : <Outer>
+            {isLoading ? <LoadingComponent><LoadingImg/></LoadingComponent> : <Outer>
                 {summaryData.map((item, index) => (
                     <Box key={index} onClick={() =>
                         handleBoxClick(item.title, item.img_url, item.date, item.press, item.content, index, summaryData.length)}

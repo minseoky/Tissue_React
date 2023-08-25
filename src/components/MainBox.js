@@ -6,6 +6,7 @@ import Chart from "./Chart";
 import PeriodSelector from "../cloud_components/PeriodSelector";
 import DailySelector from "../cloud_components/DailySelector";
 import { useNavigate } from 'react-router-dom';
+import LoadingImg from "./LoadingImg";
 
 
 export const cloudSizeValue = 1500;
@@ -156,7 +157,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
                   />
               )}
               {isLoading ? (
-                <LoadingComponent>Loading...</LoadingComponent>
+                <LoadingComponent><LoadingImg/></LoadingComponent>
               ) : (
                   active === "cloud"
                       ? <CloudContainer>
