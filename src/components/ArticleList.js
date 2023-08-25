@@ -1,8 +1,9 @@
 import styled, {keyframes} from "styled-components";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Modal from 'react-modal';
 import ThemeColors from "../color_config/ThemeColors";
 import tissue_img from "../imgs/Tissue.png";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 
 
 const LoadingComponent = styled.div`
@@ -116,8 +117,9 @@ const StyledModal = styled(Modal).attrs({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 30px;
+  margin: 0;
   z-index: 20;
   overflow: auto; /* Add scroll when content overflows */
   white-space: pre-wrap; /* Preserve whitespace and wrap text */
@@ -127,6 +129,21 @@ const StyledModal = styled(Modal).attrs({
             0px -6px 8px rgba(0, 0, 0, 0.1),
           6px 0px 8px rgba(0, 0, 0, 0.1),
           -6px 0px 8px rgba(0, 0, 0, 0.1);
+
+  &::-webkit-scrollbar {
+    /* 세로 스크롤 넓이 */
+    width: 8px;
+
+    /* 가로 스크롤 높이 */
+    height: 8px;
+
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
   
 `
 const ModalInner = styled.div`
@@ -164,6 +181,40 @@ const ETC = styled.div`
   }
 `
 
+const StyledButtonLeft = styled.button`
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  border: none;
+  top : 23%;
+  left: 8%;
+  background-color: ${ThemeColors.backButtonColor1};
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 10px;
+  font-size: 40px;
+  &:hover{
+    cursor: pointer;
+    background-color: ${ThemeColors.backButtonColor2};
+  }
+`
+const StyledButtonRight = styled.button`
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  border: none;
+  top : 23%;
+  right: 8%;
+  background-color: ${ThemeColors.backButtonColor1};
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 10px;
+  font-size: 40px;
+  &:hover{
+    cursor: pointer;
+    background-color: ${ThemeColors.backButtonColor2};
+  }
+
+`
+
 const summaryQuantity = 10;
 function ArticleList({endDate, startDate, selectedKeyword}) {
 
@@ -175,6 +226,8 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
     const [imgUrl, setImgUrl] = useState("");
     const [date, setDate] = useState("");
     const [press, setPress] = useState("");
+    const [index, setIndex] = useState();
+    const [summaryDataLength, setSummaryDataLength] = useState();
     useEffect(() => {
         async function fetchData() {
             const dateList = [];
@@ -225,13 +278,31 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
             });
     }, [selectedKeyword]); //fetch data
 
-    const handleBoxClick = (title, img_url, date, press, content) => {
+    const handleBoxClick = (title, img_url, date, press, content, index, summaryDataLength) => {
         setTitle(title);
         setImgUrl(img_url);
         setContent(content);
         setDate(date);
         setPress(press);
+        setIndex(index);
+        setSummaryDataLength(summaryDataLength);
         setModalIsOpen(true);
+    };
+
+    const leftBtnClick = () => {
+        if (index > 0) {
+            const newIndex = index - 1;
+            const newItem = summaryData[newIndex];
+            handleBoxClick(newItem.title, newItem.img_url, newItem.date, newItem.press, newItem.content, newIndex, summaryData.length);
+        }
+    };
+
+    const rightBtnClick = () => {
+        if (index < summaryDataLength - 1) {
+            const newIndex = index + 1;
+            const newItem = summaryData[newIndex];
+            handleBoxClick(newItem.title, newItem.img_url, newItem.date, newItem.press, newItem.content, newIndex, summaryData.length);
+        }
     };
 
     return(
@@ -239,7 +310,7 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
             {isLoading ? <LoadingComponent>Loading...</LoadingComponent> : <Outer>
                 {summaryData.map((item, index) => (
                     <Box key={index} onClick={() =>
-                        handleBoxClick(item.title, item.img_url, item.date, item.press, item.content)}
+                        handleBoxClick(item.title, item.img_url, item.date, item.press, item.content, index, summaryData.length)}
                     >
                         <ImageWrapper>
                             <Image src={item.img_url ? item.img_url : tissue_img} alt="Article Image" />
@@ -255,6 +326,8 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
             </Outer>}
             <StyledModal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <ModalInner>
+                    {index !== 0 && <StyledButtonLeft onClick={() => leftBtnClick()}><IoIosArrowBack/></StyledButtonLeft>}
+                    {index !== summaryDataLength-1 && <StyledButtonRight onClick={() => rightBtnClick()}><IoIosArrowForward/></StyledButtonRight>}
                     <ImgAndTitle>
                         <ImgContainer src={imgUrl ? imgUrl : tissue_img}/>
                         <ETC>

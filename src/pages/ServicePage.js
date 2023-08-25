@@ -61,7 +61,7 @@ const BackButton = styled.button`
   border-radius: 9999px;
   width: 40px;
   height: 40px;
-  margin : 20px;
+  margin : 1%;
 
   transition: background-color 0.2s ease-in-out;
 
