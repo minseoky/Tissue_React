@@ -43,18 +43,21 @@ function Chart({isPeriod, endDate, startDate, wordCloudData}) {
     },[startDate, endDate])
     return(
         <Outer>
-            <KeywordList>
-                {wordCloudData.map((data, index) => (
-                    <Keyword
-                        key={index}
-                        ishighlighted={highlightedKeywords.includes(data.text) ? "true" : "false"}
-                        onClick={() => toggleKeywordHighlight(data.text)}
-                    >
-                        {data.text}
-                    </Keyword>
-                ))}
-            </KeywordList>
+            <div className={"step_6"}>
+                <KeywordList>
+                    {wordCloudData.map((data, index) => (
+                        <Keyword
+                            key={index}
+                            ishighlighted={highlightedKeywords.includes(data.text) ? "true" : "false"}
+                            onClick={() => toggleKeywordHighlight(data.text)}
+                        >
+                            {data.text}
+                        </Keyword>
+                    ))}
+                </KeywordList>
+            </div>
             <ChartContainer isPeriod={isPeriod} endDate={endDate} startDate={startDate} wordCloudData={wordCloudData} highlightedKeywords={highlightedKeywords}/>
+
         </Outer>
     );
 }

@@ -110,7 +110,7 @@ function MainContainer({isPeriodDefault, endDateDefault, startDateDefault}) {
         },
         {
             target: '.step_6', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
-            content: '파이차트를 클릭하면 세부 페이지로 이동합니다.', // 가이드 텍스트
+            content: '원하는 키워드를 클릭하여 차트를 표시합니다.', // 가이드 텍스트
             disableBeacon: true,
         },
         // 추가적인 스텝들...
