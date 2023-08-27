@@ -71,6 +71,7 @@ function ChartContainer({ startDate, endDate, wordCloudData, isPeriod, highlight
                     date,
                     ...keywordDataObject,
                 });
+                console.log(keywordDataObject);
             }
             setLineChartData(lineChartDataArray);
         };

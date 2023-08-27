@@ -5,23 +5,27 @@ import ThemeColors from "../color_config/ThemeColors";
 
 function Cloud({ wordCloudData,onWordClick,width,height }) {
 
+    const randomColor = () => {
+        const colors = [
+            ThemeColors.cloudTextColor1,
+            ThemeColors.cloudTextColor2,
+            ThemeColors.cloudTextColor3
+        ];
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+    };
+
     return (
         <div>
             <div className={"step_5"}>
             <WordCloud
                 data={wordCloudData}
-                width={width}
-                height={height}
+                width={width*5}
+                height={height*5}
                 font="Pretendard"
-                fill={(d) =>
-                    d.value > 1900
-                        ? ThemeColors.cloudTextColor1
-                        : d.value > 800
-                            ? ThemeColors.cloudTextColor2
-                            : ThemeColors.cloudTextColor3
-                }
+                fill={() => randomColor()}
                 rotate={() => 0}
-                padding={(width+height)/90}
+                padding={(width+height)/35}
                 random={() => 0.5}
                 onWordClick={onWordClick}
             />

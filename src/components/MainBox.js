@@ -43,7 +43,7 @@ const LoadingComponent = styled.div`
 const CloudContainer = styled.div`
   height: 80%;
   margin-top: -30px;
-  
+  background-color: transparent;
   & text:hover {
     cursor: pointer;
   }
@@ -83,7 +83,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
 
     useEffect(() => {
         setIsLoading(true);
-        if(isPeriod === "false"){
+        if (isPeriod === "false") {
             setEndDate(startDate);
         }
         async function fetchData() {
@@ -96,10 +96,9 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
             }
 
             const fetchDataForDate = async (date) => {
-                const apiUrl = `/api/hot_keywords?date=${date.toISOString().slice(0,10)}&topN=${keywordQuantity}`;
+                const apiUrl = `/api/hot_keywords?date=${date.toISOString().slice(0, 10)}&topN=${keywordQuantity*3}`;
                 try {
                     const response = await fetch(apiUrl);
-                    console.log(response);
                     const jsonData = await response.json();
                     return jsonData.map(item => ({ text: item.keyword, value: item.value * cloudSizeValue }));
                 } catch (error) {
@@ -108,32 +107,32 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
                 }
             };
 
-            const fetchDataPromises = dateList.map((date) => fetchDataForDate(date));
+            const fetchedDataList = await Promise.all(dateList.map(fetchDataForDate));
+            const updatedWordCloudData = [...wordCloudData]; // Create a copy of the existing data
 
-            try {
-                const fetchedDataList = await Promise.all(fetchDataPromises);
-                const combinedData = fetchedDataList.flat();
-                const sortedData = combinedData.sort((a, b) => b.value - a.value).slice(0, keywordQuantity);
-                setWordCloudData(sortedData);
-            } catch (error) {
-                console.error("Error fetching word cloud data:", error);
-            }
+            fetchedDataList.forEach(dataForDate => {
+                dataForDate.forEach(item => {
+                    const existingIndex = updatedWordCloudData.findIndex(word => word.text === item.text);
+                    if (existingIndex !== -1) {
+                        updatedWordCloudData[existingIndex].value += item.value;
+                    } else {
+                        updatedWordCloudData.push(item);
+                    }
+                });
+            });
+
+            const sortedData = updatedWordCloudData.sort((a, b) => b.value - a.value).slice(0, keywordQuantity);
+            setWordCloudData(sortedData);
         }
 
         fetchData()
-            .then(() => setIsLoading(false)) // Set loading state to false after data is fetched and processed
+            .then(() => setIsLoading(false))
             .catch(error => {
                 console.error("Error fetching word cloud data:", error);
-
                 setIsLoading(false);
             });
-    }, [isPeriod, startDate, endDate, keywordQuantity]); //fetch data
-    useEffect(() => {
-        if(!wordCloudData.some(word => word.text === selectedKeyword) && selectedKeyword != null){
-            setSelectedKeyword(null);
-            alert("해당 기간에 기존 키워드가 없습니다.");
-        }
-    },[wordCloudData])
+    }, [isPeriod, startDate, endDate, keywordQuantity]);
+
 
     const HandleOnClick = (selectedKeyword, wordCloudData) => {
         navigate('/service', { state: { selectedKeyword, wordCloudData, startDate, endDate, isPeriod } });
