@@ -83,10 +83,24 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
 
     useEffect(() => {
         setIsLoading(true);
-        setWordCloudData([]);
+
         if (isPeriod === "false") {
             setEndDate(startDate);
         }
+
+        async function fetchDataForDate(date) {
+            const apiUrl = `/api/hot_keywords?date=${date.toISOString().slice(0, 10)}&topN=${keywordQuantity}`;
+            try {
+                const response = await fetch(apiUrl);
+                console.log(response);
+                const jsonData = await response.json();
+                return jsonData.map(item => ({ text: item.keyword, value: item.value * cloudSizeValue }));
+            } catch (error) {
+                console.error("Error fetching word cloud data for date:", date, error);
+                return [];
+            }
+        }
+
         async function fetchData() {
             const dateList = [];
             let currentDate = new Date(startDate);
@@ -96,28 +110,17 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
                 currentDate.setDate(currentDate.getDate() + 1);
             }
 
-            const fetchDataForDate = async (date) => {
-                const apiUrl = `/api/hot_keywords?date=${date.toISOString().slice(0, 10)}&topN=${keywordQuantity*3}`;
-                try {
-                    const response = await fetch(apiUrl);
-                    const jsonData = await response.json();
-                    return jsonData.map(item => ({ text: item.keyword, value: item.value * cloudSizeValue }));
-                } catch (error) {
-                    console.error("Error fetching word cloud data for date:", date, error);
-                    return [];
-                }
-            };
+            const fetchedDataList = await Promise.all(dateList.map(date => fetchDataForDate(date)));
 
-            const fetchedDataList = await Promise.all(dateList.map(fetchDataForDate));
-            const updatedWordCloudData = [...wordCloudData]; // Create a copy of the existing data
-
+            // Combine fetched data for each date
+            const updatedWordCloudData = [];
             fetchedDataList.forEach(dataForDate => {
-                dataForDate.forEach(item => {
-                    const existingIndex = updatedWordCloudData.findIndex(word => word.text === item.text);
+                dataForDate.forEach(newData => {
+                    const existingIndex = updatedWordCloudData.findIndex(existingData => existingData.text === newData.text);
                     if (existingIndex !== -1) {
-                        updatedWordCloudData[existingIndex].value += item.value;
+                        updatedWordCloudData[existingIndex].value += newData.value;
                     } else {
-                        updatedWordCloudData.push(item);
+                        updatedWordCloudData.push(newData);
                     }
                 });
             });
@@ -133,6 +136,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
                 setIsLoading(false);
             });
     }, [isPeriod, startDate, endDate, keywordQuantity]);
+
 
 
     const HandleOnClick = (selectedKeyword, wordCloudData) => {
@@ -166,6 +170,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
                               wordCloudData={wordCloudData}
                               width={width}
                               height={height}
+                              sizeValue={Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24))+10}
                               onWordClick={(event, d) => {
                                   setSelectedKeyword(d.text);
                                   HandleOnClick(d.text, wordCloudData);
