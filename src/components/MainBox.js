@@ -139,8 +139,10 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
 
 
 
-    const HandleOnClick = (selectedKeyword, wordCloudData) => {
-        navigate('/service', { state: { selectedKeyword, wordCloudData, startDate, endDate, isPeriod } });
+    const HandleOnClick = (SelectedKeyword, wordCloudData) => {
+        console.log(SelectedKeyword);
+        console.log(wordCloudData);
+        navigate('/service', { state: { SelectedKeyword, wordCloudData, startDate, endDate, isPeriod } });
     }
 
 

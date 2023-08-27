@@ -74,8 +74,9 @@ const BackButton = styled.button`
 function ServicePage() {
     const { state } = useLocation();
     const [tabOpen, setTabOpen] = useState(false);
-    const [selectedKeyword, setSelectedKeyword] = useState(state.selectedKeyword);
+    const [selectedKeyword, setSelectedKeyword] = useState(state.SelectedKeyword);
     const toggleTab = () => {
+        console.log(state);
         setTabOpen(!tabOpen);
     };
 
@@ -84,12 +85,14 @@ function ServicePage() {
     const endDate = state.endDate;
     const isPeriod = state.isPeriod;
     const navigate = useNavigate();
-    const HandleOnClick = () => {
+
+
+    const HandleOnClick2 = () => {
         navigate('/', { state: {startDate, endDate, isPeriod } });
     }
     return (
         <div>
-            <BackButton onClick={HandleOnClick}><ImArrowLeft2/></BackButton>
+            <BackButton onClick={HandleOnClick2}><ImArrowLeft2/></BackButton>
             <ContentContainer open={tabOpen}>
                 <TabContainer>
                     <TabButton onClick={toggleTab}>

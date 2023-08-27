@@ -66,6 +66,7 @@ function ContentContainerContents({wordCloudData, startDate, endDate, isPeriod, 
                   onWordClick={(event, d) => {
                       setSelectedKeyword(d.text);
                   }}
+                  sizeValue={Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24))+10}
               />
           </CloudContainer>
       </Outer>
