@@ -74,7 +74,7 @@ const BackButton = styled.button`
 function ServicePage() {
     const { state } = useLocation();
     const [tabOpen, setTabOpen] = useState(false);
-    const [selectedKeyword, setSelectedKeyword] = useState(state.SelectedKeyword);
+    const [selectedKeyword, setSelectedKeyword] = useState(state.selectedKeyword);
     const toggleTab = () => {
         console.log(state);
         setTabOpen(!tabOpen);
