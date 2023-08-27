@@ -83,6 +83,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
 
     useEffect(() => {
         setIsLoading(true);
+        setWordCloudData([]);
         if (isPeriod === "false") {
             setEndDate(startDate);
         }
