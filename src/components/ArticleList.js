@@ -192,6 +192,8 @@ const StyledButtonLeft = styled.button`
   transition: background-color 0.2s ease-in-out;
   border-radius: 10px;
   font-size: 40px;
+
+  color:black;
   &:hover{
     cursor: pointer;
     background-color: ${ThemeColors.backButtonColor2};
@@ -208,6 +210,8 @@ const StyledButtonRight = styled.button`
   transition: background-color 0.2s ease-in-out;
   border-radius: 10px;
   font-size: 40px;
+
+  color:black;
   &:hover{
     cursor: pointer;
     background-color: ${ThemeColors.backButtonColor2};
@@ -307,8 +311,10 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
 
     return(
         <OverflowContainer>
-            {isLoading ? <LoadingComponent><LoadingImg/></LoadingComponent> : <Outer>
+            {isLoading ? <LoadingComponent><LoadingImg/></LoadingComponent> : <div className={'step_4'}><Outer>
+
                 {summaryData.map((item, index) => (
+                    <div className={'step_3'}>
                     <Box key={index} onClick={() =>
                         handleBoxClick(item.title, item.img_url, item.date, item.press, item.content, index, summaryData.length)}
                     >
@@ -322,8 +328,9 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
                         <ArticleTitle>{item.title}</ArticleTitle>
                         <Summary>{item.summary}</Summary>
                     </Box>
+                    </div>
                 ))}
-            </Outer>}
+            </Outer></div>}
             <StyledModal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <ModalInner>
                     {index !== 0 && <StyledButtonLeft onClick={() => leftBtnClick()}><IoIosArrowBack/></StyledButtonLeft>}

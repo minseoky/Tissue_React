@@ -28,12 +28,16 @@ const LabelContainer = styled.button`
   &:hover {
     cursor: pointer;
   }
-
   @media (max-width: 1024px) {
     font-size: 14px;
-    height:  ${props => props.pixel + 28}px;
-    margin-top: ${props => 8 - props.pixel}px;
-    padding-top: 10px;
+    width: 80px;
+  }
+  @media (max-width: 624px) {
+    font-size: 14px;
+    width: 80px;
+    border-radius: 15px;
+    height:  40px;
+    margin: 0 5px 10px 5px;
   }
 `;
 

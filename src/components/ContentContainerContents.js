@@ -22,14 +22,14 @@ const Outer = styled.div`
 const DateContainer = styled.div`
   text-align: center;
   font-size: 18px;
-  @media (max-width: 1024px) {
+  @media (max-width: 624px) {
     font-size: 12px;
   }
   
 `
 
 const CloudContainer = styled.div`
-  @media (max-width: 1024px) {
+  @media (max-width: 624px) {
     margin-top: -5%;
   }
 `

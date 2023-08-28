@@ -16,6 +16,16 @@ import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import {cloudSizeValue} from "./MainBox";
 
+const PieChartContainer = styled.div`
+  flex: 2; /* Take 2/5 of the available vertical space */
+  @media (max-width: 624px) {
+    flex: 1;
+  }
+`;
+
+const LineChartContainer = styled.div`
+  flex: 3; /* Take 3/5 of the available vertical space */
+`;
 
 
 const Outer = styled.div`
@@ -31,14 +41,39 @@ const Outer = styled.div`
   }
 `
 
+const Cover = styled.div`
+  @media (max-width: 1024px) {
+  }
+  @media (max-width: 624px) {
+  }
+`
 const Info = styled.div`
     text-align: center;
   font-size: 22px;
   margin-top: 20px;
+  font-size: 20px;
+  @media (max-width: 1024px) {
+    font-size: 15px;
+  }
 `
 function ChartContainer({ startDate, endDate, wordCloudData, isPeriod, highlightedKeywords }) {
     const [lineChartData, setLineChartData] = useState([]);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const pieChartOuterRadius = Math.min(windowWidth * 0.1, 120);
     const navigate = useNavigate();
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    // Calculate the outerRadius based on the window width
+
 
     useEffect(() => {
         // Construct an array of dates from startDate to endDate
@@ -100,51 +135,55 @@ function ChartContainer({ startDate, endDate, wordCloudData, isPeriod, highlight
     }
 
     return (
-        <div>
-            {highlightedKeywords.length === 0 ? <Info>↑ 키워드를 선택하세요 ↑</Info> : <Outer>
-                <ResponsiveContainer>
-                    <PieChart>
-                        <Pie
-                            data={filteredChartData}
-                            dataKey="value"
-                            nameKey="name"
-                            cx={isPeriod === "false" ? "50%" : "50%"}
-                            cy="50%"
-                            outerRadius={120}
-                            fill="#8884d8"
-                            label={(entry) => entry.name} // 키워드 이름을 라벨로 표시
-                            onClick={(event, entry) => {
-                                HandleOnClick(filteredChartData[entry].name, wordCloudData);
-                            }}
-                        >
-                            {filteredChartData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        <Cover>
+            {highlightedKeywords.length === 0 ? <Info>🚀 키워드를 선택하세요</Info> : <Outer>
+                <PieChartContainer>
+                    <ResponsiveContainer>
+                        <PieChart>
+                            <Pie
+                                data={filteredChartData}
+                                dataKey="value"
+                                nameKey="name"
+                                cx={isPeriod === "false" ? "50%" : "50%"}
+                                cy="50%"
+                                outerRadius={windowWidth >= 624 ? pieChartOuterRadius : pieChartOuterRadius*1.3}
+                                fill="#8884d8"
+                                label={(entry) => entry.name} // 키워드 이름을 라벨로 표시
+                                onClick={(event, entry) => {
+                                    HandleOnClick(filteredChartData[entry].name, wordCloudData);
+                                }}
+                            >
+                                {filteredChartData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))}
+                            </Pie>
+                            <Tooltip />
+                        </PieChart>
+                    </ResponsiveContainer>
+                </PieChartContainer>
+                {windowWidth >= 624 && isPeriod === "true" ?  <LineChartContainer>
+                    <ResponsiveContainer>
+                        <LineChart data={lineChartData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            {highlightedKeywords.map((keyword, index) => (
+                                <Line
+                                    key={keyword}
+                                    dataKey={keyword} // 해당 키워드의 데이터 키를 지정
+                                    name={keyword}
+                                    stroke={COLORS[index % COLORS.length]}
+                                    type="monotone" // 선 그래프 유형
+                                    dot={false} // 데이터 포인트 점 비활성화
+                                />
                             ))}
-                        </Pie>
-                        <Tooltip />
-                    </PieChart>
-                </ResponsiveContainer>
-                {isPeriod === "true" ?  <ResponsiveContainer>
-                    <LineChart data={lineChartData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        {highlightedKeywords.map((keyword, index) => (
-                            <Line
-                                key={keyword}
-                                dataKey={keyword} // 해당 키워드의 데이터 키를 지정
-                                name={keyword}
-                                stroke={COLORS[index % COLORS.length]}
-                                type="monotone" // 선 그래프 유형
-                                dot={false} // 데이터 포인트 점 비활성화
-                            />
-                        ))}
-                    </LineChart>
-                </ResponsiveContainer> : null}
-            </Outer>}
-        </div>
+                        </LineChart>
+                    </ResponsiveContainer>
+                </LineChartContainer>: null}
+                </Outer>}
+        </Cover>
     );
 }
 

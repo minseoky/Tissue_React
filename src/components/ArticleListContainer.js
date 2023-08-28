@@ -56,15 +56,17 @@ function ArticleListContainer({selectedKeyword, startDate, endDate, isPeriod}) {
     return(
       <ArticleListContainerOuter>
           <KeywordWrapper>
-              <Keyword>
-                  KEYWORD
-              </Keyword>
-              <SelectedKeyword>
-                  {selectedKeyword}
-              </SelectedKeyword>
-              <DateViewer>
-                  {isPeriod === "true" ? `${startDate.toISOString().slice(0,10)} ~ ${endDate.toISOString().slice(0,10)}` : `${startDate.toISOString().slice(0,10)}`} 의 키워드
-              </DateViewer>
+              <div className={'step_2'}>
+                  <Keyword>
+                      KEYWORD
+                  </Keyword>
+                  <SelectedKeyword>
+                      {selectedKeyword}
+                  </SelectedKeyword>
+                  <DateViewer>
+                      {isPeriod === "true" ? `${startDate.toISOString().slice(0,10)} ~ ${endDate.toISOString().slice(0,10)}` : `${startDate.toISOString().slice(0,10)}`} 의 키워드
+                  </DateViewer>
+              </div>
           </KeywordWrapper>
           <ArticleList
               startDate={startDate}

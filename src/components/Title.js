@@ -18,12 +18,18 @@ const TitleContainer = styled.div`
     font-style: normal;
   }
   font-family: "BMDOHYEON";
-  
+  @media (max-width: 624px) {
+    font-size: 36px;
+  }
 `
 
 const StyledImg = styled.img`
   width: 78px;
   height: 84px;
+  @media (max-width: 624px) {
+    width: 48px;
+    height: 54px;
+  }
 `
 
 function Title(){

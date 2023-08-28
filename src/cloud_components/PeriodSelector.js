@@ -39,7 +39,7 @@ const StyledDatePicker = styled(DatePicker)`
   &:focus {
     border: 2px solid ${ThemeColors.datePickerColorActive};
   }
-  @media (max-width: 1024px) {
+  @media (max-width: 624px) {
     width: 80%;
     height: 28px;
     font-size: 14px;

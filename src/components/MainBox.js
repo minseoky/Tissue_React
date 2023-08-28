@@ -48,7 +48,10 @@ const CloudContainer = styled.div`
     cursor: pointer;
   }
   @media (max-width: 1024px) {
-    margin-top: -80px;
+  }
+  @media (max-width: 624px) {
+    margin-top: -15px;
+    scale:80%;
   }
 `
 

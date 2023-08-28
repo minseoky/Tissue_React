@@ -38,17 +38,38 @@ const ToggleContainerOuter = styled.div`
   margin-left: auto;
   margin-right: 5%;
   @media (max-width: 1024px) {
-    font-size: 0px;
+    font-size: 0;
   }
+  @media (max-width: 624px) {
+    scale: 90%;
+    margin-bottom: 10px;
+  }
+  
 `
 
 const KeywordQuantity = styled.div`
   align-items: center;
   margin-left: auto;
   @media (max-width: 1024px) {
-    font-size: 14px;
+    font-size: 15px;
+  }
+  @media (max-width: 624px) {
     position: absolute;
-    margin-bottom: 50px;
+    left: 11%;
+    margin-bottom: 80px;
+    scale:80%;
+  }
+  
+`
+
+const QuantityLabel = styled.div`
+  font-size: 15px;
+  
+  @media (max-width: 1024px) {
+    font-size: 0px;
+  }
+  @media (max-width: 624px) {
+    font-size: 15px;
   }
 `
 const StyledSlider = styled(Slider)`
@@ -175,7 +196,7 @@ function MainContainer({isPeriodDefault, endDateDefault, startDateDefault}) {
                 </div>
                 <KeywordQuantity>
                     <div className={"step_2"} style={{display: "flex"}}>
-                    키워드 개수:
+                        <QuantityLabel>키워드 개수:</QuantityLabel>
                     <StyledSlider
                         axis="x"
                         xstep={1}

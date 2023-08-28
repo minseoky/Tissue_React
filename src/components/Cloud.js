@@ -21,12 +21,12 @@ function Cloud({ wordCloudData, onWordClick, width, height, sizeValue }) {
             <div className={"step_5"}>
                 <WordCloud
                     data={wordCloudData}
-                    width={width * sizeValue/4.5}
-                    height={height * sizeValue/4.5}
+                    width={width * sizeValue/4.1}
+                    height={height * sizeValue/4.1}
                     font="Pretendard"
                     fill={() => getNextColor()}
                     rotate={() => 0}
-                    padding={(width + height) / 62}
+                    padding={(width + height) / 70}
                     random={() => 0.5}
                     onWordClick={onWordClick}
                 />

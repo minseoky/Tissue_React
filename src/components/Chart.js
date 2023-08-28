@@ -13,6 +13,12 @@ const KeywordList = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 18px;
+  @media (max-width: 1024px) {
+    gap: 12px;
+  }
+  @media (max-width: 624px) {
+    gap: 6px;
+  }
 `;
 
 const Keyword = styled.span`
@@ -24,6 +30,12 @@ const Keyword = styled.span`
   transition: font-weight 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   padding: 3px;
   border-radius: 3px;
+  @media (max-width: 1024px) {
+    font-size: 15px;
+  }
+  @media (max-width: 624px) {
+    font-size: 13px;
+  }
 `;
 function Chart({isPeriod, endDate, startDate, wordCloudData}) {
     const [highlightedKeywords, setHighlightedKeywords] = useState([]);
