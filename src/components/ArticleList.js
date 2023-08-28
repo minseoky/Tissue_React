@@ -311,7 +311,7 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
 
     return(
         <OverflowContainer>
-            {isLoading ? <LoadingComponent><LoadingImg/></LoadingComponent> : <div className={'step_4'}><Outer>
+            {isLoading ? <LoadingComponent><LoadingImg/></LoadingComponent> : <Outer>
 
                 {summaryData.map((item, index) => (
                     <div className={'step_3'}>
@@ -330,7 +330,7 @@ function ArticleList({endDate, startDate, selectedKeyword}) {
                     </Box>
                     </div>
                 ))}
-            </Outer></div>}
+            </Outer>}
             <StyledModal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <ModalInner>
                     {index !== 0 && <StyledButtonLeft onClick={() => leftBtnClick()}><IoIosArrowBack/></StyledButtonLeft>}

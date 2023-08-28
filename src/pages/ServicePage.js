@@ -113,16 +113,11 @@ function ServicePage() {
         },
         {
             target: '.step_3', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
-            content: '요약된 기사들이 이렇게 표시됩니다. 원문을 읽고 싶다면 클릭하세요.', // 가이드 텍스트
+            content: '요약된 기사들이 이렇게 표시됩니다. 원문을 읽고 싶다면 클릭하세요. 기사가 여러개라면 옆으로 슬라이드 하여 더 읽을 수 있습니다.', // 가이드 텍스트
             disableBeacon: true,
         },
         {
             target: '.step_4', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
-            content: '기사가 여러개라면 옆으로 슬라이드 하여 더 읽을 수 있습니다.', // 가이드 텍스트
-            disableBeacon: true,
-        },
-        {
-            target: '.step_5', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
             content: '이 버튼을 눌러 워드 클라우드를 볼 수 있습니다. 키워드를 클릭하면 현재 페이지에서 변경됩니다!', // 가이드 텍스트
             disableBeacon: true,
         },
@@ -171,7 +166,7 @@ function ServicePage() {
             <BackButton onClick={HandleOnClick2}><div className={'step_1'}><ImArrowLeft2/></div></BackButton>
             <ContentContainer open={tabOpen}>
                 <TabContainer>
-                    <div className={'step_5'}>
+                    <div className={'step_4'}>
                     <TabButton onClick={toggleTab}>
                         {tabOpen ? <IoIosArrowBack /> : <IoIosArrowForward />}
                     </TabButton>
