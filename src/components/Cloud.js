@@ -1,7 +1,7 @@
 import WordCloud from "react-d3-cloud";
 import ThemeColors from "../color_config/ThemeColors";
 
-function Cloud({ wordCloudData, onWordClick, width, height, sizeValue }) {
+function Cloud({ wordCloudData, onWordClick, width, height, sizeValue, keywordQuantity = 10 }) {
     const colorCount = 3; // Total number of available colors
     let colorIndex = 0; // Index to keep track of the current color
 
@@ -21,12 +21,12 @@ function Cloud({ wordCloudData, onWordClick, width, height, sizeValue }) {
             <div className={"step_5"}>
                 <WordCloud
                     data={wordCloudData}
-                    width={width * sizeValue/4.1}
-                    height={height * sizeValue/4.1}
+                    width={width * sizeValue/5.5 + keywordQuantity*4}
+                    height={height * sizeValue/5.5 - keywordQuantity}
                     font="Pretendard"
                     fill={() => getNextColor()}
                     rotate={() => 0}
-                    padding={(width + height) / 70}
+                    padding={(width + height) / 110}
                     random={() => 0.5}
                     onWordClick={onWordClick}
                 />

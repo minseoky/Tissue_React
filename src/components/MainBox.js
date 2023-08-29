@@ -42,12 +42,14 @@ const LoadingComponent = styled.div`
 
 const CloudContainer = styled.div`
   height: 80%;
-  margin-top: -30px;
   background-color: transparent;
+  scale: 100%;
   & text:hover {
     cursor: pointer;
   }
   @media (max-width: 1024px) {
+    margin-top: -25px;
+    scale: 90%;
   }
   @media (max-width: 624px) {
     margin-top: -15px;
@@ -178,6 +180,7 @@ function MainBox({active, isPeriod, keywordQuantity, endDateDefault, startDateDe
                                   setSelectedKeyword(d.text);
                                   HandleOnClick(d.text, wordCloudData);
                               }}
+                              keywordQuantity={keywordQuantity}
                           />
                       </CloudContainer>
                       : <Chart

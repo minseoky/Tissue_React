@@ -38,7 +38,7 @@ function Title(){
     return(
         <TitleContainer>
             <StyledImg src={tissue_img}/>
-            TISSUES
+            TISSUE
         </TitleContainer>
     );
 }

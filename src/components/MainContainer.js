@@ -100,7 +100,7 @@ function MainContainer({isPeriodDefault, endDateDefault, startDateDefault}) {
     const [tCloudActive, setTCloudActive] = useState("true");
     const [tChartActive, setTChartActive] = useState("false");
     const [periodToggle, setPeriodToggle] = useState(isPeriodDefault ? isPeriodDefault : "false");
-    const [keywordQuantity, setKeywordQuantity] = useState(10);
+    const [keywordQuantity, setKeywordQuantity] = useState(20);
     const [runTour, setRunTour] = useState(false);
 
     const steps = [
@@ -201,7 +201,7 @@ function MainContainer({isPeriodDefault, endDateDefault, startDateDefault}) {
                         axis="x"
                         xstep={1}
                         xmin={10}
-                        xmax={20}
+                        xmax={30}
                         x={keywordQuantity}
                         onChange={({ x }) => setKeywordQuantity(x)}
                         styles={{
