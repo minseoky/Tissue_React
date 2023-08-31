@@ -218,7 +218,7 @@ function MainContainer({isPeriodDefault, endDateDefault, startDateDefault}) {
                 </KeywordQuantity>
 
                 <ToggleContainerOuter>
-                    주간 키워드로 보기
+                    기간별로 보기
                     <div className={"step_3"} style={{display: "flex"}}>
                     <ToggleContainer onClick={handleToggleClick} period={periodToggle}>
                         <ToggleButton active={periodToggle === "true" ? "false" : "true"} />

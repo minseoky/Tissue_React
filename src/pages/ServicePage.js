@@ -99,6 +99,7 @@ function ServicePage() {
     const [tabOpen, setTabOpen] = useState(false);
     const [selectedKeyword, setSelectedKeyword] = useState(state.selectedKeyword);
     const [runTour, setRunTour] = useState(false);
+    const [analysePage, setAnalysePage] = useState(false);
 
     const steps = [
         {
@@ -121,6 +122,32 @@ function ServicePage() {
             content: '이 버튼을 눌러 워드 클라우드를 볼 수 있습니다. 키워드를 클릭하면 현재 페이지에서 변경됩니다!', // 가이드 텍스트
             disableBeacon: true,
         },
+        {
+            target: '.step_7', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
+            content: '여기가 키워드의 테마입니다.', // 가이드 텍스트
+            disableBeacon: true,
+        },
+        {
+            target: '.step_8', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
+            content: '여기에서 키워드의 테마를 변경할 수 있습니다.', // 가이드 텍스트
+            disableBeacon: true,
+        },
+        {
+            target: '.step_10', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
+            content: '여기에서 현재 테마에 소속된 다른 키워드로 교체할 수 있습니다.', // 가이드 텍스트
+            disableBeacon: true,
+        },
+        {
+            target: '.step_9', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
+            content: '여기에서 전일대비, 3일간 테마전체의 평균 등락율을 확인할 수 있습니다.', // 가이드 텍스트
+            disableBeacon: true,
+        },
+        {
+            target: '.step_11', // 가이드할 요소의 선택자 (적절한 선택자로 변경해야 함)
+            content: '여기에서 관련된 투자정보를 확인할 수 있습니다.', // 가이드 텍스트
+            disableBeacon: true,
+        },
+
         // 추가적인 스텝들...
     ];
     const toggleTab = () => {
@@ -136,7 +163,12 @@ function ServicePage() {
 
 
     const HandleOnClick2 = () => {
-        navigate('/', { state: {startDate, endDate, isPeriod } });
+        if(analysePage === false){
+            navigate('/', { state: {startDate, endDate, isPeriod } });
+        }
+        else{
+            setAnalysePage(false);
+        }
     }
     return (
         <div>
@@ -185,6 +217,8 @@ function ServicePage() {
                 selectedKeyword={selectedKeyword}
                 startDate={startDate}
                 endDate={endDate}
+                setAnalysePage={setAnalysePage}
+                analysePage={analysePage}
             />
         </div>
     );

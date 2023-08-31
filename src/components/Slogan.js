@@ -5,7 +5,8 @@ import Typewriter from "typewriter-effect";
 const SloganContainer = styled.div`
   text-align: center;
   color: ${ThemeColors.textColor2};
-  padding-bottom: 10px;
+  padding-bottom: 6px;
+  padding-top:8px;
   white-space: nowrap; /* Prevent line breaks */
   @media (max-width: 624px) {
     margin-bottom: 30px;
@@ -23,7 +24,7 @@ function Slogan() {
                         .start();
                 }}
                 options={{
-                    strings: ['세상을 바꾸는 한 입 뉴스'],
+                    strings: ['티슈처럼 쏙- 모든 주식 이슈를 한 번에'],
                     autoStart: true,
                     loop: true,
                     pauseFor: 20000

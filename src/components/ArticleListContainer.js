@@ -1,6 +1,8 @@
 import styled, {keyframes} from "styled-components";
 import ThemeColors from "../color_config/ThemeColors";
 import ArticleList from "./ArticleList";
+import {useState} from "react";
+import AnalyseContainer from "./AnalyseContainer";
 
 const fadeAnimation = keyframes`
   from {
@@ -47,33 +49,52 @@ const SelectedKeyword = styled.div`
   color: ${ThemeColors.textColor3}
 `
 
-const DateViewer = styled.div`
-  font-size: 15px;
+const AnalyseLink = styled.div`
+  text-decoration: underline;
+  font-size: 17px;
   color: ${ThemeColors.textColor1};
-  margin: 15px 0 -15px 0;
+  margin: 12px 0 -12px 0;
+  &:hover{
+    cursor: pointer;
+    color: ${ThemeColors.textColor2};
+  }
 `
-function ArticleListContainer({selectedKeyword, startDate, endDate, isPeriod}) {
+function ArticleListContainer({selectedKeyword, startDate, endDate, isPeriod, analysePage, setAnalysePage}) {
+
+    const AnalyseLinkClickHandler = () =>{
+        setAnalysePage(!analysePage);
+    }
     return(
-      <ArticleListContainerOuter>
-          <KeywordWrapper>
-              <div className={'step_2'}>
-                  <Keyword>
-                      KEYWORD
-                  </Keyword>
-                  <SelectedKeyword>
-                      {selectedKeyword}
-                  </SelectedKeyword>
-                  <DateViewer>
-                      {isPeriod === "true" ? `${startDate.toISOString().slice(0,10)} ~ ${endDate.toISOString().slice(0,10)}` : `${startDate.toISOString().slice(0,10)}`} 의 키워드
-                  </DateViewer>
-              </div>
-          </KeywordWrapper>
-          <ArticleList
-              startDate={startDate}
-              endDate={endDate}
-              selectedKeyword={selectedKeyword}
-          />
-      </ArticleListContainerOuter>
+        <div>
+        {
+            analysePage === true ? <AnalyseContainer
+                    selectedKeyword={selectedKeyword}
+                    startDate={startDate}
+                    endDate={endDate}
+                    setAnalysePage={setAnalysePage}
+                /> :
+                <ArticleListContainerOuter>
+                    <KeywordWrapper>
+                        <div className={'step_2'}>
+                            <Keyword>
+                                KEYWORD
+                            </Keyword>
+                            <SelectedKeyword>
+                                {selectedKeyword}
+                            </SelectedKeyword>
+                            <AnalyseLink onClick={() => AnalyseLinkClickHandler()}>
+                                주식 분석 더 보기>>
+                            </AnalyseLink>
+                        </div>
+                    </KeywordWrapper>
+                    <ArticleList
+                        startDate={startDate}
+                        endDate={endDate}
+                        selectedKeyword={selectedKeyword}
+                    />
+                </ArticleListContainerOuter>
+        }
+        </div>
     );
 }
 
